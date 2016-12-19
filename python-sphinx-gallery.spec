@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        0.1.5
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -100,6 +100,9 @@ nosetests-%{python3_version}
 
 
 %changelog
+* Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 0.1.5-4
+- Rebuild for Python 3.6
+
 * Mon Nov 21 2016 Orion Poplawski <orion@cora.nwra.com> - 0.1.5-3
 - Add upstream patch to fix UnicodeDecodeError
 
