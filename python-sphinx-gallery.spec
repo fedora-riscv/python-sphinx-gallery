@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        0.1.5
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -100,6 +100,9 @@ nosetests-%{python3_version}
 
 
 %changelog
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 0.1.5-4
 - Rebuild for Python 3.6
 
