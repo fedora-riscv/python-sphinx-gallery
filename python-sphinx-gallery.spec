@@ -1,16 +1,13 @@
 %global srcname sphinx-gallery
 
 Name:           python-%{srcname}
-Version:        0.1.5
-Release:        6%{?dist}
+Version:        0.1.13
+Release:        1%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
 URL:            http://sphinx-gallery.readthedocs.io/en/latest/
 Source0:        https://github.com/sphinx-gallery/sphinx-gallery/archive/v%{version}/%{srcname}-%{version}.tar.gz
-# Fix UnicodeDecodeError with py35
-# https://github.com/sphinx-gallery/sphinx-gallery/issues/170
-Patch0:         https://github.com/sphinx-gallery/sphinx-gallery/commit/fa2ea5f35051846e43837c6eb87496435a6064c0.patch
 
 BuildArch:      noarch
 
@@ -22,16 +19,18 @@ it into an examples gallery.
 %package -n python2-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
+BuildRequires:  python2-setuptools
 # For tests
-BuildRequires:  python-coverage
-BuildRequires:  python-nose
-BuildRequires:  python-matplotlib
-BuildRequires:  python-pillow
-BuildRequires:  python-sphinx
-Requires:       python-matplotlib
-Requires:       python-pillow
-Requires:       python-sphinx
+BuildRequires:  python2-coverage
+BuildRequires:  python2-matplotlib
+BuildRequires:  python2-pillow
+BuildRequires:  python2-pytest-cov
+BuildRequires:  python2-pytest-runner
+BuildRequires:  python2-scipy
+BuildRequires:  python2-sphinx
+Requires:       python2-matplotlib
+Requires:       python2-pillow
+Requires:       python2-sphinx
 %{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
@@ -45,9 +44,11 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 # For tests
 BuildRequires:  python%{python3_pkgversion}-coverage
-BuildRequires:  python%{python3_pkgversion}-nose
 BuildRequires:  python%{python3_pkgversion}-matplotlib
 BuildRequires:  python%{python3_pkgversion}-pillow
+BuildRequires:  python%{python3_pkgversion}-pytest-cov
+BuildRequires:  python%{python3_pkgversion}-pytest-runner
+BuildRequires:  python%{python3_pkgversion}-scipy
 BuildRequires:  python%{python3_pkgversion}-sphinx
 Requires:       python%{python3_pkgversion}-matplotlib
 Requires:       python%{python3_pkgversion}-pillow
@@ -61,10 +62,10 @@ it into an examples gallery.
 
 %prep
 %setup -qn %{srcname}-%{version}
-%patch0 -p1 -b .utf8
-
 # Remove bundled eggs
 rm -rf %{srcname}.egg-info
+# Test uses network
+sed -i -e '/^addopt/s/$/ -k "not test_embed_code_links_get_data and not test_embed_links"/' setup.cfg
 
 
 %build
@@ -81,9 +82,9 @@ rm -r %{buildroot}%{_bindir}
 
 %check
 #export LANG=en_US.UTF-8
-nosetests-%{python2_version}
-rm -f .coverage
-nosetests-%{python3_version}
+%__python2 setup.py test
+rm .coverage
+%__python3 setup.py test
 
 
 %files -n python2-%{srcname}
@@ -100,6 +101,9 @@ nosetests-%{python3_version}
 
 
 %changelog
+* Wed Dec 27 2017 Orion Poplawski <orion@nwra.com> - 0.1.13-1
+- Update to 0.1.13
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
