@@ -1,8 +1,8 @@
 %global srcname sphinx-gallery
 
 Name:           python-%{srcname}
-Version:        0.1.13
-Release:        4%{?dist}
+Version:        0.2.0
+Release:        1%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -16,6 +16,7 @@ A Sphinx extension that builds an HTML version of any Python script and puts
 it into an examples gallery.
 
 
+%if 0%{?fedora} < 30
 %package -n python2-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python2-devel
@@ -36,6 +37,7 @@ Requires:       python2-sphinx
 %description -n python2-%{srcname}
 A Sphinx extension that builds an HTML version of any Python script and puts
 it into an examples gallery.
+%endif
 
 
 %package -n     python%{python3_pkgversion}-%{srcname}
@@ -69,12 +71,16 @@ sed -i -e '/^addopt/s/$/ -k "not test_embed_code_links_get_data and not test_emb
 
 
 %build
+%if 0%{?fedora} < 30
 %py2_build
+%endif
 %py3_build
 
 
 %install
+%if 0%{?fedora} < 30
 %py2_install
+%endif
 %py3_install
 # No need for copy_sphinxgallery.sh
 rm -r %{buildroot}%{_bindir}
@@ -82,16 +88,20 @@ rm -r %{buildroot}%{_bindir}
 
 %check
 #export LANG=en_US.UTF-8
+%if 0%{?fedora} < 30
 %__python2 setup.py test
 rm .coverage
+%endif
 %__python3 setup.py test
 
 
+%if 0%{?fedora} < 30
 %files -n python2-%{srcname}
 %license LICENSE
 %doc CHANGES.rst README.rst
 %{python2_sitelib}/sphinx_gallery-%{version}-py%{python2_version}.egg-info/
 %{python2_sitelib}/sphinx_gallery/
+%endif
 
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
@@ -101,6 +111,10 @@ rm .coverage
 
 
 %changelog
+* Sun Oct 7 2018 Orion Poplawski <orion@nwra.com> - 0.2.0-1
+- Update to 0.2.0
+- Drop Python 2 package for Fedora 30+ (bugz #1628982)
+
 * Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.13-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
