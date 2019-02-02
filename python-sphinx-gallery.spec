@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        0.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -111,6 +111,9 @@ rm .coverage
 
 
 %changelog
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sun Oct 7 2018 Orion Poplawski <orion@nwra.com> - 0.2.0-1
 - Update to 0.2.0
 - Drop Python 2 package for Fedora 30+ (bugz #1628982)
