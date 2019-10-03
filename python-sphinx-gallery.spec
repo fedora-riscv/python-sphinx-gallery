@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        0.3.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -111,6 +111,9 @@ rm .coverage
 
 
 %changelog
+* Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 0.3.1-4
+- Rebuilt for Python 3.8.0rc1 (#1748018)
+
 * Mon Aug 19 2019 Miro Hrončok <mhroncok@redhat.com> - 0.3.1-3
 - Rebuilt for Python 3.8
 
