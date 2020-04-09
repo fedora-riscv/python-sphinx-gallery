@@ -1,8 +1,8 @@
 %global srcname sphinx-gallery
 
 Name:           python-%{srcname}
-Version:        0.5.0
-Release:        2%{?dist}
+Version:        0.6.1
+Release:        1%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -111,6 +111,9 @@ rm .coverage
 
 
 %changelog
+* Thu Apr 09 2020 Orion Poplawski <orion@nwra.com> - 0.6.1-1
+- Update to 0.6.1
+
 * Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
