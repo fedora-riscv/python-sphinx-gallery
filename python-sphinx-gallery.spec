@@ -1,7 +1,7 @@
 %global srcname sphinx-gallery
 
 Name:           python-%{srcname}
-Version:        0.6.2
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
@@ -111,6 +111,9 @@ rm .coverage
 
 
 %changelog
+* Fri May 22 2020 Orion Poplawski <orion@nwra.com> - 0.7.0-1
+- Update to 0.7.0
+
 * Fri May 08 2020 Orion Poplawski <orion@nwra.com> - 0.6.2-1
 - Update to 0.6.2
 
