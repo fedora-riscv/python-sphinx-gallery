@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        0.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -111,6 +111,9 @@ rm .coverage
 
 
 %changelog
+* Tue May 26 2020 Miro Hrončok <mhroncok@redhat.com> - 0.7.0-2
+- Rebuilt for Python 3.9
+
 * Fri May 22 2020 Orion Poplawski <orion@nwra.com> - 0.7.0-1
 - Update to 0.7.0
 
