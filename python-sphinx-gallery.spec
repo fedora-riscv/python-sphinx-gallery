@@ -1,8 +1,8 @@
 %global srcname sphinx-gallery
 
 Name:           python-%{srcname}
-Version:        0.7.0
-Release:        4%{?dist}
+Version:        0.8.1
+Release:        1%{?dist}
 Summary:        Sphinx extension to automatically generate an examples gallery
 
 License:        BSD
@@ -68,6 +68,9 @@ rm -r %{buildroot}%{_bindir}
 
 
 %changelog
+* Thu Sep 10 2020 Orion Poplawski <orion@nwra.com> - 0.8.1-1
+- Update to 0.8.1
+
 * Thu Aug 06 2020 Orion Poplawski <orion@nwra.com> - 0.7.0-4
 - Completely drop python2 support
 
