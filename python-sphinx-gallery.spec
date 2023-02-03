@@ -1,5 +1,12 @@
 %global srcname sphinx-gallery
 
+%bcond_without bootstrap
+%if %{with bootstrap}
+%bcond_with tests
+%else
+%bcond_without tests
+%endif
+
 Name:           python-%{srcname}
 Version:        0.10.1
 Release:        4%{?dist}
@@ -20,6 +27,7 @@ it into an examples gallery.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
+%if %{with tests}
 # For tests
 BuildRequires:  python%{python3_pkgversion}-coverage
 BuildRequires:  python%{python3_pkgversion}-matplotlib
@@ -31,6 +39,7 @@ BuildRequires:  python%{python3_pkgversion}-sphinx
 Requires:       python%{python3_pkgversion}-matplotlib
 Requires:       python%{python3_pkgversion}-pillow
 Requires:       python%{python3_pkgversion}-sphinx
+%endif
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
@@ -56,8 +65,10 @@ sed -i -e '/^addopt/s/$/ -k "not test_embed_code_links_get_data and not test_emb
 rm -r %{buildroot}%{_bindir}
 
 
+%if %{with tests}
 %check
 %__python3 setup.py test
+%endif
 
 
 %files -n python%{python3_pkgversion}-%{srcname}
